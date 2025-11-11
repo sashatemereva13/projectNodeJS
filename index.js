@@ -1,6 +1,7 @@
 import { logMiddleware } from "./src/middleware/middleware.js";
 import express from "express";
 import userRoutes from "./src/routes/authRoutes.js";
+import videoGameRoutes from "./src/routes/videoGamesRoutes.js";
 import config from "./src/config/config.js";
 import {
   validateApiKeyProduction,
@@ -24,6 +25,7 @@ app.get("/", (req, res) => {
     environment: config.nodeEnv,
     endpoints: {
       users: "/users",
+      videoGames: "/videogames",
     },
   });
 });
@@ -39,6 +41,7 @@ app.get("/health", (req, res) => {
 // Protected routes (API key required)
 // Option 1: Protect all /users routes
 app.use("/users", validateApiKey, userRoutes);
+app.use("/videogames", validateApiKey, videoGameRoutes);
 
 // Option 2: Only protect in production (easier for development)
 // app.use('/users', validateApiKeyProduction, userRoutes)
@@ -76,6 +79,14 @@ app.listen(config.port, () => {
   console.log(`  POST   /users         - Create new user (protected)`);
   console.log(`  PUT    /users/:id     - Update user (protected)`);
   console.log(`  DELETE /users/:id     - Delete user (protected)`);
+
+  console.log(`****_________________________________________________****`);
+  console.log(`                                                    `);
+  console.log(`  GET    /videogames         - Get all games (protected)`);
+  console.log(`  GET    /videogames/:id     - Get game by ID (protected)`);
+  console.log(`  POST   /videogames         - Create new game (protected)`);
+  console.log(`  PUT    /videogames/:id     - Update game (protected)`);
+  console.log(`  DELETE /videogames/:id     - Delete game (protected)`);
 });
 
 export default app;
