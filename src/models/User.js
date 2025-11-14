@@ -105,10 +105,20 @@ class User {
       console.log("Seeding users table with sample data...");
 
       const sampleUsers = [
-        { name: "Alice", email: "alice@example.com" },
-        { name: "Bob", email: "bob@example.com" },
-        { name: "Charlie", email: "charlie@example.com" },
-        { name: "Dave", email: "dave@example.com" },
+        {
+          name: "Alice",
+          email: "alice@example.com",
+          age: 13,
+          gender: "female",
+        },
+        { name: "Bob", email: "bob@example.com", age: 111, gender: "male" },
+        {
+          name: "Charlie",
+          email: "charlie@example.com",
+          age: 33,
+          gender: "male",
+        },
+        { name: "Dave", email: "dave@example.com", age: 11, gender: "male" },
       ];
 
       sampleUsers.forEach((user) => this.create(user));
