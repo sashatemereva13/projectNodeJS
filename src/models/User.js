@@ -36,33 +36,35 @@ class User {
   }
 
   static create(userData) {
-    const { name, email } = userData;
+    const { name, email, age, gender, avatar_url } = userData;
+
     const stmt = db.prepare(
-      `INSERT INTO ${this.tableName} (name, email) VALUES (?, ?)`
+      `INSERT INTO ${this.tableName} (name, email, age, gender, avatar_url) VALUES (?, ?, ?, ?, ?)`
     );
-    const result = stmt.run(name, email || null);
+    const result = stmt.run(
+      name,
+      email || null,
+      age || null,
+      gender || null,
+      avatar_url || null
+    );
     return this.findById(result.lastInsertRowid);
   }
 
   static update(id, userData) {
-    const { name, email } = userData;
-
-    const updates = [];
+    const fields = [];
     const values = [];
 
-    if (name !== undefined) {
-      updates.push("name = ?");
-      values.push(name);
+    for (const [key, value] of Object.entries(userData)) {
+      if (value !== undefined) {
+        fields.push(`${key} = ?`);
+        values.push(value);
+      }
     }
 
-    if (email !== undefined) {
-      updates.push("email = ?");
-      values.push(email);
-    }
+    fields.push("updated_at = CURRENT_TIMESTAMP");
 
-    updates.push("updated_at = CURRENT_TIMESTAMP");
-
-    if (updates.length === 1) {
+    if (fields.length === 1) {
       return this.findById(id);
     }
 
@@ -70,7 +72,7 @@ class User {
 
     const stmt = db.prepare(`
             UPDATE ${this.tableName}
-            SET ${updates.join(", ")}
+            SET ${fields.join(", ")}
             WHERE id = ?`);
 
     stmt.run(...values);
