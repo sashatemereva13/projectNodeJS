@@ -14,7 +14,7 @@ const app = express();
 
 await initialiseDatabase();
 
-app.use.apply(cors());
+app.use(cors());
 
 // middleware to parse JSON bodies
 app.use(express.json());
