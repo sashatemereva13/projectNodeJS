@@ -9,6 +9,9 @@ class User {
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT NOT NULL,
         email TEXT UNIQUE,
+        age INTEGER,
+        gender TEXT,
+        avatar_url TEXT,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
         );
@@ -110,15 +113,29 @@ class User {
           email: "alice@example.com",
           age: 13,
           gender: "female",
+          avatar_url: "https://randomuser.me/api/portraits/women/21.jpg",
         },
-        { name: "Bob", email: "bob@example.com", age: 111, gender: "male" },
+        {
+          name: "Bob",
+          email: "bob@example.com",
+          age: 111,
+          gender: "male",
+          avatar_url: "https://randomuser.me/api/portraits/men/21.jpg",
+        },
         {
           name: "Charlie",
           email: "charlie@example.com",
           age: 33,
           gender: "male",
+          avatar_url: "https://randomuser.me/api/portraits/men/17.jpg",
         },
-        { name: "Dave", email: "dave@example.com", age: 11, gender: "male" },
+        {
+          name: "Dave",
+          email: "dave@example.com",
+          age: 11,
+          gender: "male",
+          avatar_url: "https://randomuser.me/api/portraits/men/13.jpg",
+        },
       ];
 
       sampleUsers.forEach((user) => this.create(user));
