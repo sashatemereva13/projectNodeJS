@@ -1,5 +1,6 @@
 import { logMiddleware } from "./src/middleware/middleware.js";
 import express from "express";
+import cors from "cors";
 import userRoutes from "./src/routes/authRoutes.js";
 import videoGameRoutes from "./src/routes/videoGamesRoutes.js";
 import config from "./src/config/config.js";
@@ -12,6 +13,8 @@ import { initialiseDatabase } from "./src/config/database.js";
 const app = express();
 
 await initialiseDatabase();
+
+app.use.apply(cors());
 
 // middleware to parse JSON bodies
 app.use(express.json());

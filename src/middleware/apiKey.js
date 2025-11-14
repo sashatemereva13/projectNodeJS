@@ -16,7 +16,7 @@ export const validateApiKey = (req, res, next) => {
   if (apiKey !== config.apiKey) {
     return res.status(403).json({
       error: "Forbidden",
-      message: "Imvalid API key",
+      message: "Invalid API key",
     });
   }
 
