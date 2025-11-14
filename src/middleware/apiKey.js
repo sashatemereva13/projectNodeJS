@@ -3,7 +3,7 @@ import config from "../config/config.js";
 export const validateApiKey = (req, res, next) => {
   const apiKey =
     req.headers["x-api-key"] ||
-    req.headers["authorisation"]?.replace("Bearer ", "");
+    req.headers["authorization"]?.replace("Bearer ", "");
 
   if (!apiKey) {
     return res.status(401).json({
