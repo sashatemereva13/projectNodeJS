@@ -1,11 +1,11 @@
-import { VideoGame } from "../models/VideoGames.js";
+import VideoGames from "../models/VideoGames.js";
 
 export const getAllVideoGames = (req, res) => {
-  res.json(VideoGame.getAll());
+  res.json(VideoGames.getAll());
 };
 
 export const getVideoGameById = (req, res) => {
-  const game = VideoGame.getById(req.params.id);
+  const game = VideoGames.getById(req.params.id);
   if (!game) {
     return res.status(404).json({ message: "Video game not found" });
   }
@@ -13,12 +13,12 @@ export const getVideoGameById = (req, res) => {
 };
 
 export const createVideoGame = (req, res) => {
-  const newGame = VideoGame.create(req.body);
+  const newGame = VideoGames.create(req.body);
   res.status(201).json(newGame);
 };
 
 export const updateVideoGame = (req, res) => {
-  const updatedGame = VideoGame.update(req.params.id, req.body);
+  const updatedGame = VideoGames.update(req.params.id, req.body);
   res.json(updatedGame);
 };
 

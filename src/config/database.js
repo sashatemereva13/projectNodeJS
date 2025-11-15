@@ -28,10 +28,13 @@ export const initialiseDatabase = async () => {
   console.log("initialising database...");
 
   const User = (await import("../models/User.js")).default;
+  const VideoGames = (await import("../models/VideoGames.js")).default;
 
   User.createTable();
+  VideoGames.createTable();
 
   User.seed();
+  VideoGames.seed();
 
   console.log(`Database initialisation complete`);
 };
