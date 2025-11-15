@@ -9,7 +9,7 @@ export const validateApiKey = (req, res, next) => {
     return res.status(401).json({
       error: "Unauthorised",
       message:
-        "API key is required. Provide it in X-API0KEY header or Authorisation header",
+        "API key is required. Provide it in X-API-KEY header or Authorisation header",
     });
   }
 

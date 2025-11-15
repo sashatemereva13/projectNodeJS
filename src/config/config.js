@@ -10,7 +10,7 @@ for (const envVar of requiredEnvVars) {
   }
 }
 
-export const config = {
+const config = {
   port: process.env.PORT || 3000,
   nodeEnv: process.env.NODE_ENV || "development",
 
@@ -19,7 +19,7 @@ export const config = {
   apiKey: process.env.API_KEY,
 
   jwtSecret: process.env.JWT_SECRET || "default-secret-change-in-production",
-  jwrExpiresIn: process.env.JWT_EXPIRES_IN || "24h",
+  jwtExpiresIn: process.env.JWT_EXPIRES_IN || "24h",
 
   isDevelopment: () => process.env.NODE_ENV === "development",
   isProduction: () => process.env.NODE_ENV === "production",

@@ -12,9 +12,10 @@ import { initialiseDatabase } from "./src/config/database.js";
 
 const app = express();
 
-await initialiseDatabase();
-
+// connect back end and front end
 app.use(cors());
+
+await initialiseDatabase();
 
 // middleware to parse JSON bodies
 app.use(express.json());
