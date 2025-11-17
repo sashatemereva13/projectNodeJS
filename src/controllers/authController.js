@@ -2,6 +2,7 @@
 
 import * as userService from "../services/authService.js";
 
+// calls the service to fetch all users
 export const getAllUsers = (req, res) => {
   try {
     const users = userService.getAllUsers();
@@ -11,6 +12,7 @@ export const getAllUsers = (req, res) => {
   }
 };
 
+//
 export const getUserById = (req, res) => {
   try {
     const { id } = req.params;
@@ -47,10 +49,7 @@ export const createUser = (req, res) => {
 export const updateUser = (req, res) => {
   try {
     const { id } = req.params;
-    const { name, email } = req.body;
-    const userData = req.body;
-
-    const updatedUser = userService.updateUser(id, { name, email });
+    const updatedUser = userService.updateUser(id, req.body);
 
     if (!updatedUser) {
       return res.status(404).json({ message: "User not found" });

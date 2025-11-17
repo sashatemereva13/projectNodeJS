@@ -31,7 +31,7 @@ export const updateUser = (id, userData) => {
     throw new Error("Email already exists");
   }
 
-  return User.update(id, { name, email });
+  return User.update(id, userData);
 };
 
 export const deleteUser = (id) => {
